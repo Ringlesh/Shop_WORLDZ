@@ -1,0 +1,74 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container ">
+      <a class="navbar-brand fw-bold text-danger" href="{% url 'home' %}"><i class="fa-solid fa-cart-flatbed-suitcase i"  style="color: #ff0000;"></i>
+        Shop_WORLDZ</a>
+        {% if request.user.is_authenticated %}
+  
+      <a class=" btn btn-danger " href="{% url 'logout' %}"><i class="fa-solid fa-right-to-bracket i" style="color: #20304c;"></i>logout</a>
+  
+        {% else %}
+  
+      <a class=" btn btn-success " href="{% url 'login' %}"><i class="fa-solid fa-right-to-bracket i" style="color: #20304c;"></i>login</a>
+  
+        {% endif %}
+        
+  
+      <button class="navbar-toggler " type="button" data-bs-toggle="collapse" 
+              data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" 
+              aria-expanded="false" aria-label="Toggle navigation">
+  
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+         
+          {% if request.user.is_authenticated %}
+          <li class="nav-item mx-3 ">
+             <a class="nav-link active text-muted fw-bold" aria-current="page" href="{% url 'home' %}"> {{request.user}} </a>
+          </li>
+          {% endif %}
+  
+          <li class="nav-item ">
+            <a class="nav-link active" aria-current="page" href="{% url 'home' %}"><i class="fa-solid fa-house i" style="color: #20304c;"></i>Home</a>
+          </li>
+  
+          {% if request.user.is_authenticated %}
+          
+          {% else %}
+          
+          <li class="nav-item">
+            <a class="nav-link" href={% url 'reg' %}><i class="fa-solid fa-user i" style="color: #20304c;"></i> Register</a>
+          </li>
+  
+          {% endif %}
+  
+  
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'collection' %}"><i class="fa-solid fa-bag-shopping" style="color: #20304c;"></i></i> Collection</a>
+          </li>
+          
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'cart' %}"><i class="fa-solid fa-cart-shopping i" style="color: #20304c;"></i> Cart </a>
+          </li>
+          
+          <li class="nav-item ">
+            <a class="nav-link" href="{% url 'fav_page' %}"><i class="fa-solid fa-heart"  style="color: #20304c;"></i></i> Favourite </a>
+          </li>
+
+          {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class=" btn btn-success fw-bold" href={% url 'seller' %}><i class="fa-solid fa-user i" style="color: #20304c;"></i>Seller</a>
+          </li>
+          {% else %}          
+
+  
+          {% endif %}
+          
+        </ul>
+       
+
+    </div>
+    
+
+  </div>
+</nav>

@@ -1,0 +1,208 @@
+{% extends 'layout/main.html' %}
+
+{% block tilte %}
+    Collection | Shop_WORLDZ
+{% endblock tilte %}
+
+
+{% block body %}
+<section class="bg-light py-4 my-5" style="min-height:600px;">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="col-12">
+        <h4 class="mb-3">{{c_name}} Products</h4>
+        <hr style="border-color:#b8bfc2;">
+        <nav aria-label="breadcrumb">
+          <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'home' %}">Home</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'collection' %}">Collections</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'collectionveiw' c_name %}">{{c_name}}</a></li>
+            <li class="breadcrumb-item active">{{products.name}}</li>
+          </ol>
+        </nav>
+
+        {% comment %} {% include 'shop/inc/message.html' %} {% endcomment %}
+      </div>
+      <hr>
+      <h1 class="text-danger">{{ products.name }}</h1>
+      <div class="col-md-4 col-12 my-3">
+        <img src="{{products.image.url}}"  class="card-img-top" alt="Categories">
+    
+      </div>
+      <div class="col-md-8 col-12 my-3 ">
+        <div class="card-body">
+          <h3 class="card-title text-primary">{{products.name}}</h3>
+          <h5 class="card-title text-muted">Seller : {{ products.vendor }}</h5>
+          <h6 class="card-title ">{{ products.description }}</h6>
+          <hr>
+
+      
+          <div>
+            <h6 class=" old_price fw-bold text-danger"><s>Current price : Rs.{{ products.original_price | stringformat:'d'}}</s></h6>
+            <h2 class="new_price fw-bold">Offer price : Rs.{{products.Selling_price | stringformat:'d' }}</h2>
+            {% if products.quantity > 0 %}
+
+            <input type="hidden" value="{{products.id}}" id="pid">
+            <p>
+              <div class="input-group" sytle="width:150px">
+                <button class="input-group-text bg-success text-light" id="btn_minus"><i class="fa-solid fa-circle-minus"></i></button>
+                <input type="text" name="qty" id="txtQty" value="1" class="form-control text-center">
+              <button class="input-group-text bg-success text-light"  id="btn_plus"><i class="fa-solid fa-circle-plus"></i></button>
+              </div>          
+            
+            </p>
+            <div  >
+              <div class="justify-content-center d-flex">
+                <button id="cartbutton" class="btn  btn-success w-75"><i class="fa-solid fa-cart-shopping " style="color: white;"></i> Add to Chart</button>
+                {% else %}
+                <h6 class="btn  btn-secondary  w-75">Out-of-Stock</h6>
+                {% endif %}
+              </div>
+              <div class="justify-content-center d-flex">
+                <h6 class="btn btn-danger  w-75 mt-3" id="fav"><i class="fa-sharp fa-solid fa-heart" style="color: white;"></i></h6>
+
+              </div>
+            <div>
+
+          </div>
+      </div>
+          </div>
+        </a>
+        </div>
+      </div>
+
+
+
+
+      
+    </div>
+  </div>
+</section>
+<script>
+  console.log("script");
+  document.addEventListener("DOMContentLoaded",function(event)
+      {
+        //console.log("listener1");
+        const btnplus = document.getElementById("btn_plus");
+        const btnminus = document.getElementById("btn_minus");
+        const txtqty = document.getElementById("txtQty");
+        const pid = document.getElementById("pid");
+        const Bcart = document.getElementById("cartbutton");
+        const fav = document.getElementById("fav");
+
+
+        btnplus.addEventListener("click",function(){
+              //console.log("lister 2");
+              let qty = parseInt(txtqty.value,10);
+              qty =isNaN(qty)?0:qty;
+              //console.log(qty);
+              if(qty<10){
+                qty ++;
+                txtQty.value=qty;
+                
+              }
+            })
+
+        btnminus.addEventListener("click",function(){
+              //console.log("lister 2");
+              let qty = parseInt(txtqty.value,10);
+              qty =isNaN(qty)?0:qty;
+              console.log(qty);
+              if(qty>0){
+                qty --;
+                txtQty.value=qty;
+                
+              }
+
+            })
+
+        Bcart.addEventListener("click",function()
+        {
+            //console.log("lister 2");
+            let qty = parseInt(txtqty.value,10);
+            qty =isNaN(qty)?0:qty;
+      
+            if(qty > 0){
+              let postobj={
+                p_qty:qty,
+                p_id:pid.value,
+                
+              }
+             console.log(postobj);
+            
+
+            //ajax
+            fetch("/addtocart/",{
+                                  method          : "POST",
+                                  crendentials    :"same-origin",
+                                  headers          :{
+                                                    "Accept"            :"application/json",
+                                                    "X-Requested-with"  :'XMLHttpRequest',
+                                                    "X-CSRFToken"       :'{{ csrf_token }}',
+                                                  },
+                                  body             : JSON.stringify(postobj)
+                                }).then(response => {
+                                  return response.json()
+                                }).then(data    => {
+                                  //console.log(data)
+                                  alert( data['status']);
+                                  if (data.status === 'Login to Add cart') {
+                                    // Perform redirect using JavaScript
+                                    window.location.href = "/login";
+                                  }
+                                })
+        
+                                }
+            
+            else{
+              alert( "please Enter the Quantity");
+            
+                }
+
+          })
+
+          fav.addEventListener("click",function()
+          {
+             let postobj={
+              p_id:pid.value,                
+              }
+             console.log(postobj);
+            
+
+            //ajax
+            fetch("/fav/",{
+                                  method          : "POST",
+                                  crendentials    :"same-origin",
+                                  headers          :{
+                                                    "Accept"            :"application/json",
+                                                    "X-Requested-with"  :'XMLHttpRequest',
+                                                    "X-CSRFToken"       :'{{ csrf_token }}',
+                                                  },
+                                  body             : JSON.stringify(postobj)
+                                }).then(response => {
+                                  return response.json()
+                                }).then(data    => {
+                                  
+                                  alert( data['status']);
+                                  if (data.status === 'Login to Add Favorite') {
+                                    // Perform redirect using JavaScript
+                                    window.location.href = "/login";
+                                  } 
+                                })
+          })
+
+      });
+
+
+</script>
+{% endblock body %}
+
+
+
+
+
+
+
+
+
+{% comment %} ============================================= {% endcomment %}

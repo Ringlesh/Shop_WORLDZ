@@ -1,0 +1,81 @@
+{% extends 'layout/main.html' %}
+
+
+{% block title %}
+  FAVOURITE | Shop_WORLDZ
+{% endblock title %}
+
+
+{% block body %}
+
+
+
+
+ 
+  <section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row justify-content-around ">
+        <div class="col-12">
+          <h4 class="mb-3">FAVOURITE</h4>
+          <hr style="border-color:#b8bfc2;">
+        </div>
+
+
+        {% if fav %}
+        <table class="table table-brodered">
+          <tr>
+            <th>
+              Image
+            </th>
+            <th>
+              Product  NAME
+            </th>
+            <th>
+              Price
+            </th>
+        
+            <th>
+              Remove
+            </th>
+          </tr>
+          {% for item in fav %}
+          <tr>
+            <td><img src="{{item.product.image.url}}" height="75px" alt=""></td>
+            <td>{{item.product.name}}</td>
+            <td >{{item.product.Selling_price | stringformat:'d'}}</td>
+            <td><a href="{% url 'remove_fav' item.id %}" onclick="return confirm('Are yo Sure Remove?)" class="btn btn-danger btn-sam">Remove</a></td>
+          </tr>
+        
+          {% endfor %}
+        
+        
+        
+        
+        </table>
+        
+        {% else %}
+        <table class="table table-brodered">
+          <tr>
+            <th>
+              No items in FAVOURITE
+            </th>
+          </tr>
+        
+        </table>
+        {% endif %}
+
+
+
+
+
+
+      </div>
+      </div>
+  </section>
+  <script>
+
+  
+  </script>
+
+
+  {% endblock %} 

@@ -1,0 +1,129 @@
+
+
+{% extends 'layout/main.html' %}
+
+
+{% block tilte %}
+    create catagorys | Shop_World
+{% endblock tilte %}
+
+
+{% block body %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <h1>Upload Products</h1>
+        </div>
+        <hr style="border-color:rgb(123, 126, 129) 248, 255, 0.362)">
+        {% include 'layout/compantent/message.html' %}
+      </div>
+    
+      <section class="py-4 my-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <form method="post" enctype="multipart/form-data">
+                <div class="mb-4  ">
+                  <label for="" class="form-label">CATORGARY</label>
+                  {{pro.catagory}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Product_NAME</label>
+                  {{pro.name}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Image</label>
+                  {{pro.image}}
+         
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">vendor</label>
+                  {{pro.vendor}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">quantity</label>
+                  {{pro.quantity}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">original_price</label>
+                  {{pro.original_price}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Selling_price</label>
+                  {{pro.Selling_price}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Description</label>
+                  {{pro.description}}
+        
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Status</label>
+                  {{pro.status}}
+          
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">trending</label>
+                  {{pro.trending}}
+          
+                </div>
+               
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+              </form>
+            </div>
+            </div> 
+            
+            {% comment %} <div class="col-6">
+
+              <div class="mb-4  ">
+                {% if form.errors.username %}
+                <label for="" class="text-danger">{{form.errors.username}}</label>
+                
+                {% endif %}
+              </div>
+              
+              <div class="mb-4  ">
+                {% if form.errors.password1 %}
+                <label for="" class="text-danger">{{form.errors.password1}}</label>                  
+                {% endif %}
+              </div>
+              
+              <div class="mb-4  ">
+                {% if form.errors.password2 %}
+                <label for="" class="text-danger">{{form.errors.password2}}</label>
+                
+             {% endif %}
+              </div>
+              
+              <div class="mb-4  ">
+                {% if form.errors.password2 %}
+                <label for="" class="text-danger">{{form.errors.password2}}</label>
+                
+                {% endif %}
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    
+      </section>
+    
+    </div>
+  </div>
+
+</div> {% endcomment %}
+
+
+{% endblock body %}
+
+
+{% block script %}
+
+{% endblock script %}

@@ -1,0 +1,67 @@
+
+
+{% extends 'layout/main.html' %}
+
+
+{% block tilte %}
+    create catagorys | Shop_World
+{% endblock tilte %}
+
+
+{% block body %}
+
+
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          {% if Type == "seller" %}
+          <h1>Seller</h1>
+          {% else %}
+          <h1>Buyer</h1>
+          {% endif %}
+     
+        </div>
+        <hr style="border-color:rgb(123, 126, 129) 248, 255, 0.362)">
+        {% include 'layout/compantent/message.html' %}
+      </div>
+    
+      <section class="py-4 my-5 mb-5">
+        <div class="container">
+          {% if Type == "seller" %}
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <a href="{% url 'ccat' %}" class="btn btn-primary w-100">CREATE_CATORGARY</a>
+            </div>
+            <div class="col-6">
+              <a href="{% url 'cpro' %}" class="btn btn-danger w-100">UPLOAD_PRODUCT</a>
+            </div>
+          </div> 
+          {% else %}
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <p class="fw-bold text-center">your are now Buyer to become</p>
+              <a href="{% url 'reg' %}" class="btn btn-primary w-100">Seller </a>
+            </div>
+          
+          {% endif %}
+        </div>
+      </section>
+          
+
+
+   
+
+          
+            
+
+
+
+
+
+{% endblock body %}
+
+
+{% block script %}
+
+{% endblock script %}

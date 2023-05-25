@@ -1,0 +1,109 @@
+{% extends 'layout/main.html' %}
+
+
+{% block title %}
+  CART | Shop_WORLDZ
+{% endblock title %}
+
+
+{% block body %}
+ 
+  <section class="bg-light py-4 my-5" style="min-height:600px;">
+    <div class="container">
+      <div class="row justify-content-around ">
+        <div class="col-12">
+          <h4 class="mb-3">CART</h4>
+          <hr style="border-color:#b8bfc2;">
+        </div>
+
+        {% if cart %}
+        <div class="table-responsive">
+        <table class="table table-brodered">
+          <tr>
+            <th>
+              Image
+            </th>
+            <th>
+              Product  NAME
+            </th>
+            <th>
+              Quantity
+            </th>
+            <th>
+              Price
+            </th>
+
+            <th>
+             Amount
+            </th>
+            <th>
+              Remove
+            </th>
+          </tr>
+          {% for item in cart %}
+          <tr>
+            <td><img src="{{item.product.image.url}}" height="75px" alt=""></td>
+            <td>{{item.product.name}}</td>
+            <td >{{item.product_qty}}</td>
+            <td >{{item.product.Selling_price | stringformat:'d'}}</td>
+            <td class="PT">{{item.total_cost | stringformat:'d'}}</td>
+            <td><a href="{% url 'remove_cart' item.id %}" onclick="return confirm('Are yo Sure Remove?)" class="btn btn-danger btn-sam">Remove</a></td>
+          </tr>
+        
+          {% endfor %}
+
+          <tr>
+            <td>
+            </td>
+            <td>
+            </td>
+            <td>
+            </td>
+            <th>
+              Total Amount    :
+            </th>
+            <td id="NET">
+            </td>
+          </tr>
+
+
+
+
+        </table>
+      </div>
+
+        
+        {% else %}
+        <table class="table table-brodered">
+          <tr>
+            <th>
+              No item in Cart
+            </th>
+
+        </table>
+        {% endif %}
+
+
+
+
+
+
+
+
+      </div>
+      </div>
+  </section>
+  <script>
+    const nodes = document.querySelectorAll('.PT');
+  
+    const arr = Array.from(nodes);
+  
+    const res = arr.reduce((acc, curr) => {
+      return acc + Number(curr.textContent);
+    }, 0);
+  
+    document.getElementById('NET').innerHTML = 'RS: ' + res;
+  </script>
+
+
+  {% endblock %} 

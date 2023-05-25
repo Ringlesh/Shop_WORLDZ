@@ -1,0 +1,88 @@
+
+.carousel{
+  border: 1px solid red;
+  border-radius:2rem;
+  overflow: hidden;
+  
+}
+.carousel-item img
+{
+  object-fit:cover;
+  object-fit: top;
+  height: 60vh;
+  overflow: hidden;
+}
+a{
+  text-decoration:none;
+  
+}
+
+.old-price
+{
+font-weight:bold;
+color:red;
+
+}
+.new-price
+{
+  font-weight:bold;
+  background-color:green;
+  color: white;
+  padding:1rem ;
+  border-radius: 1rem;
+
+  
+}
+
+.products_body
+{
+  padding:2rem;
+  border-radius:2rem ;
+}
+
+.products_card
+{
+
+  background-color:rgba(0, 26, 255, 0.442);
+  border-radius:2rem ;
+  margin:0.5rem;
+
+ 
+}
+.products_card2
+{
+
+  background-color:rgba(255, 0, 0, 0.275);
+  border-radius:2rem ;
+  margin:0.5rem;
+ 
+}
+
+.card {
+  height: 100%;
+
+}
+.card2 {
+  height: 100%;
+
+}
+.card-img-top {
+  height: 200px; /* Set a fixed height for the images */
+  object-fit: contain; /* Scale and crop the images to fill the container */
+  object-position: center; /* Center the images within the container */
+}
+
+
+.card-img-top1 {
+  object-fit: contain; 
+  object-position: center; }
+
+.i
+{
+  margin-left:0.5rem;
+  margin-right:0.5rem;
+}
+
+footer{
+  margin-top:10rem;
+}

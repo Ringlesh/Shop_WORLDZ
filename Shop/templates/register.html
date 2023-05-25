@@ -1,0 +1,106 @@
+{% extends 'layout/main.html' %}
+
+
+{% block tilte %}
+    REGISRATION | Shop_World
+{% endblock tilte %}
+
+
+{% block body %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <h1>Register Page</h1>
+        </div>
+        <hr style="border-color:rgb(123, 126, 129) 248, 255, 0.362)">
+        {% include 'layout/compantent/message.html' %}
+      </div>
+    
+      <section class="py-4 my-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <form method="post">
+
+                <div class="mb-4  ">
+                  <label for="" class="form-label">User-Type</label>
+                  {{user.usertype}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Username</label>
+                  {{form.username}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Email</label>
+                  {{form.email}}
+         
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Password</label>
+                  {{form.password1}}
+        
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Re-enter Password</label>
+                  {{form.password2}}
+          
+                </div>
+               
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary w-100">Register</button>
+              </form>
+
+              <div>
+                <span>Already USER ? </span> <a href="{% url 'login' %}" class="btn text-primary fw-bold">login now </a>
+              </div>
+            </div>
+            
+            <div class="col-6">
+
+              <div class="mb-4  ">
+                {% if form.errors.username %}
+                <label for="" class="text-danger">{{form.errors.username}}</label>
+                
+                {% endif %}
+              </div>
+              
+              <div class="mb-4  ">
+                {% if form.errors.password1 %}
+                <label for="" class="text-danger">{{form.errors.password1}}</label>                  
+                {% endif %}
+              </div>
+              
+              <div class="mb-4  ">
+                {% if form.errors.password2 %}
+                <label for="" class="text-danger">{{form.errors.password2}}</label>
+                
+             {% endif %}
+              </div>
+              
+              <div class="mb-4  ">
+                {% if form.errors.password2 %}
+                <label for="" class="text-danger">{{form.errors.password2}}</label>
+                
+                {% endif %}
+              </div>
+              
+            </div>
+          </div>
+        </div>
+    
+      </section>
+    
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock body %}
+
+
+{% block script %}
+
+{% endblock script %}

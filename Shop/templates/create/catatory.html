@@ -1,0 +1,71 @@
+
+
+  {% extends 'layout/main.html' %}
+
+
+{% block tilte %}
+    create catagorys | Shop_World
+{% endblock tilte %}
+
+
+{% block body %}
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <h1>create catagorys</h1>
+        </div>
+        <hr style="border-color:rgb(123, 126, 129) 248, 255, 0.362)">
+        {% include 'layout/compantent/message.html' %}
+      </div>
+    
+      <section class="py-4 my-5">
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-6">
+              <form method="post" enctype="multipart/form-data">
+                <div class="mb-4  ">
+                  <label for="" class="form-label">CATORGARY_NAME</label>
+                  {{cat.name}}
+                 
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Image</label>
+                  {{cat.image}}
+         
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Description</label>
+                  {{cat.description}}
+        
+                </div>
+                <div class="mb-4  ">
+                  <label for="" class="form-label">Status</label>
+                  {{cat.status}}
+          
+                </div>
+               
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary w-100">Submit</button>
+              </form>
+
+              <div>
+                
+                <a href="{% url 'login' %}" class="btn btn-danger w-100 fw-bold mt-5">Create Product </a>
+              </div>
+            </div>
+            
+      </section>
+    
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock body %}
+
+
+{% block script %}
+
+{% endblock script %}
+
